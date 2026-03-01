@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// Constants
 
 const DEPARTMENTS = [
   "Computer Science",
@@ -22,10 +22,7 @@ const INITIAL_STUDENTS = [
 
 const EMPTY_FORM = { name: "", roll: "", department: "", grade: "" };
 
-// ─── react-hot-toast handles all toast rendering via <Toaster /> ──────────────
-// No custom hook or Toast component needed.
-
-// ─── Field Component ───────────────────────────────────────────────────────────
+// Field Component
 
 function Field({ label, error, children }) {
   return (
@@ -34,14 +31,12 @@ function Field({ label, error, children }) {
         {label}
       </label>
       {children}
-      {error && (
-        <p className="text-xs text-red-500">⚠ {error}</p>
-      )}
+      {error && <p className="text-xs text-red-500">⚠ {error}</p>}
     </div>
   );
 }
 
-// ─── GradeBadge Component ──────────────────────────────────────────────────────
+// GradeBadge Component
 
 function GradeBadge({ grade }) {
   const colorMap = {
@@ -64,7 +59,7 @@ function GradeBadge({ grade }) {
   );
 }
 
-// ─── StudentForm Component ─────────────────────────────────────────────────────
+// StudentForm Component
 
 function StudentForm({ onSubmit, editingStudent, onCancelEdit }) {
   const [form, setForm]     = useState(EMPTY_FORM);
@@ -111,7 +106,6 @@ function StudentForm({ onSubmit, editingStudent, onCancelEdit }) {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-1 h-6 bg-indigo-500 rounded-full" />
@@ -126,7 +120,6 @@ function StudentForm({ onSubmit, editingStudent, onCancelEdit }) {
         )}
       </div>
 
-      {/* Grid Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         <Field label="Full Name" error={errors.name}>
           <input
@@ -163,7 +156,6 @@ function StudentForm({ onSubmit, editingStudent, onCancelEdit }) {
         </Field>
       </div>
 
-      {/* Actions */}
       <div className="flex gap-3">
         <button
           onClick={handleSubmit}
@@ -184,7 +176,7 @@ function StudentForm({ onSubmit, editingStudent, onCancelEdit }) {
   );
 }
 
-// ─── StudentTable Component ────────────────────────────────────────────────────
+// StudentTable Component
 
 function StudentTable({ students, onEdit, onDelete }) {
   if (students.length === 0) {
@@ -198,7 +190,6 @@ function StudentTable({ students, onEdit, onDelete }) {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-      {/* Table Header */}
       <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <h2 className="text-slate-800 font-bold text-lg">Student Records</h2>
         <span className="text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 px-2.5 py-1 rounded-full font-semibold">
@@ -206,7 +197,6 @@ function StudentTable({ students, onEdit, onDelete }) {
         </span>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -257,7 +247,7 @@ function StudentTable({ students, onEdit, onDelete }) {
   );
 }
 
-// ─── ConfirmModal Component ────────────────────────────────────────────────────
+// ConfirmModal Component
 
 function ConfirmModal({ student, onConfirm, onCancel }) {
   if (!student) return null;
@@ -291,7 +281,7 @@ function ConfirmModal({ student, onConfirm, onCancel }) {
   );
 }
 
-// ─── App Root ──────────────────────────────────────────────────────────────────
+// App Root
 
 export default function App() {
   const [students, setStudents]             = useState(INITIAL_STUDENTS);
@@ -323,7 +313,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-100 py-10 px-4">
-      {/* react-hot-toast – renders all toasts automatically */}
+
+      {/* react-hot-toast – single component renders all toasts */}
       <Toaster
         position="top-right"
         toastOptions={{
@@ -341,7 +332,6 @@ export default function App() {
       />
 
       <div className="max-w-4xl mx-auto flex flex-col gap-6">
-        {/* Page Header */}
         <div>
           <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">
             Assignment 4 · React CRUD

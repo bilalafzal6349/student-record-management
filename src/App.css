@@ -1,0 +1,5 @@
+/* App.css is intentionally left empty.
+   All styles are handled in:
+     - index.css  (Tailwind import + global/animation CSS)
+     - App.jsx    (Tailwind utility classes via className)
+*/

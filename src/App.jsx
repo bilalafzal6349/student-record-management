@@ -53,7 +53,7 @@ function GradeBadge({ grade }) {
   };
 
   return (
-    <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${colorMap[grade] ?? "bg-slate-100 text-slate-600"}`}>
+    <span className={`text-xs font-bold px-2 py-1 rounded-full ${colorMap[grade] ?? "bg-slate-100 text-slate-600"}`}>
       {grade}
     </span>
   );

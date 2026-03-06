@@ -43,7 +43,7 @@ const StudentTable = ({ students, onEdit, onDelete }) => {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-100 text-slate-400 text-xs uppercase tracking-wider">
-              {["#", "Name", "Roll No", "Department", "Grade", "Actions"].map((h) => (
+              {["#", "Name", "Roll No", "Subject", "Department", "Grade", "Actions"].map((h) => (
                 <th key={h} className="text-left px-6 py-3 font-semibold">{h}</th>
               ))}
             </tr>
@@ -60,6 +60,7 @@ const StudentTable = ({ students, onEdit, onDelete }) => {
                     {student.roll}
                   </span>
                 </td>
+                <td className="px-6 py-4 text-slate-500">{student.subject}</td>
                 <td className="px-6 py-4 text-slate-500">{student.department}</td>
                 <td className="px-6 py-4">
                   <GradeBadge grade={student.grade} />

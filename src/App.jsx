@@ -1,15 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import Field from "./utils/field";
 import ConfirmModal from "./utils/confirmModal";
 import StudentForm from "./components/studentForm";
 import StudentTable from "./components/studentTable";
 // Constants
 
 const INITIAL_STUDENTS = [
-  { id: 1, name: "Sara Ahmed",  roll: "CS-101", department: "Computer Science",       grade: "A"  },
-  { id: 2, name: "Ali Hassan",  roll: "EE-202", department: "Electrical Engineering", grade: "B+" },
-  { id: 3, name: "Zara Khan",   roll: "ME-303", department: "Mechanical Engineering", grade: "A-" },
+  {
+    id: 1,
+    name: "Sara Ahmed",
+    roll: "CS-101",
+    subject: "Programming Fundamentals",
+    department: "Computer Science",
+    grade: "A",
+  },
+  {
+    id: 2,
+    name: "Ali Hassan",
+    roll: "EE-202",
+    subject: "Circuits and Electronics",
+    department: "Electrical Engineering",
+    grade: "B+",
+  },
+  {
+    id: 3,
+    name: "Zara Khan",
+    roll: "ME-303",
+    subject: "Engineering Mechanics",
+    department: "Mechanical Engineering",
+    grade: "A-",
+  },
 ];
 
 

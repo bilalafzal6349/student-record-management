@@ -2,6 +2,15 @@ import Field from "../utils/field";
 import { useEffect } from "react";
 import { useState } from "react";
 
+const SUBJECTS = [
+  "Programming Fundamentals",
+  "Data Structures",
+  "Algorithms",
+  "Database Systems",
+  "Operating Systems",
+  "Computer Networks",
+];
+
 const DEPARTMENTS = [
   "Computer Science",
   "Electrical Engineering",
@@ -15,7 +24,7 @@ const GRADES = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "D", "F"];
 
 
 const  StudentForm =({ onSubmit, editingStudent, onCancelEdit }) => {
-    const EMPTY_FORM = { name: "", roll: "", department: "", grade: "" };
+    const EMPTY_FORM = { name: "", roll: "", subject: "", department: "", grade: "" };
 
   const [form, setForm]     = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
@@ -33,10 +42,11 @@ const  StudentForm =({ onSubmit, editingStudent, onCancelEdit }) => {
 
   const validate = () => {
     const e = {};
-    if (!form.name.trim()) e.name       = "Name is required";
-    if (!form.roll.trim()) e.roll       = "Roll number is required";
-    if (!form.department)  e.department = "Department is required";
-    if (!form.grade)       e.grade      = "Grade is required";
+    if (!form.name.trim())    e.name       = "Name is required";
+    if (!form.roll.trim())    e.roll       = "Roll number is required";
+    if (!form.subject)        e.subject    = "Subject is required";
+    if (!form.department)     e.department = "Department is required";
+    if (!form.grade)          e.grade      = "Grade is required";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -96,17 +106,45 @@ const  StudentForm =({ onSubmit, editingStudent, onCancelEdit }) => {
           />
         </Field>
 
+        <Field label="Subject" error={errors.subject}>
+          <select
+            name="subject"
+            value={form.subject}
+            onChange={handleChange}
+            className={inputBase(errors.subject)}
+          >
+            <option value="">Select subject</option>
+            {SUBJECTS.map((subject) => (
+              <option key={subject}>{subject}</option>
+            ))}
+          </select>
+        </Field>
+
         <Field label="Department" error={errors.department}>
-          <select name="department" value={form.department} onChange={handleChange} className={inputBase(errors.department)}>
+          <select
+            name="department"
+            value={form.department}
+            onChange={handleChange}
+            className={inputBase(errors.department)}
+          >
             <option value="">Select department</option>
-            {DEPARTMENTS.map((dept) => <option key={dept}>{dept}</option>)}
+            {DEPARTMENTS.map((dept) => (
+              <option key={dept}>{dept}</option>
+            ))}
           </select>
         </Field>
 
         <Field label="Grade" error={errors.grade}>
-          <select name="grade" value={form.grade} onChange={handleChange} className={inputBase(errors.grade)}>
+          <select
+            name="grade"
+            value={form.grade}
+            onChange={handleChange}
+            className={inputBase(errors.grade)}
+          >
             <option value="">Select grade</option>
-            {GRADES.map((grade) => <option key={grade}>{grade}</option>)}
+            {GRADES.map((grade) => (
+              <option key={grade}>{grade}</option>
+            ))}
           </select>
         </Field>
       </div>
@@ -130,4 +168,4 @@ const  StudentForm =({ onSubmit, editingStudent, onCancelEdit }) => {
     </div>
   );
 }
-export default StudentForm;
+export default StudentForm; 
